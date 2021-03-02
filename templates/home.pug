@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    include includes/header
+    div(class="page-header")
+        if data && data.username
+            if !(new_user) 
+                h3=data.fullname
+            else
+                h3 Welcome, 
+                    span=data.fullname
+    div(class="container")
+        h1(class="display-1 centered") Quizes
+    if (quizes.length == 0)
+        div(class="centered")
+            h2(class="minor-text")
+                span="No quizes have been created yet"
+    else
+        div(class="centered")
+            table(class="table table-striped centered")
+                thead
+                    tr(class="col-sm-6  col-sm-offset-4")
+                        th(scope="col")="Quiz title"
+                tbody
+                    each quiz in quizes
+                        tr
+                            td(class="col-4 quiz-title")=quiz.title
+                            td(class="col-4 centered")
+                                ul(class="nav navbar-nav")
+                                    li(class="btn-nav")
+                                        div
+                                            form(method="get" action='/quiz/'+quiz.id)
+                                                button(class="btn btn-primary navbar-btn" type="submit")
+                                                    span(class="glyphicon glyphicon-eye-open" aria-hidden="true")
+                                    li(class="btn-nav")
+                                        div
+                                            form(method="get" action='/quiz/edit/'+quiz.id)
+                                                button(class="btn btn-success navbar-btn" type="submit")
+                                                    span(class="glyphicon glyphicon-pencil" aria-hidden="true")
+                                    li(class="btn-nav")
+                                        div
+                                            form(method="post", action='/quiz/delete/'+quiz.id)
+                                                button(class="btn btn-danger navbar-btn" type="submit")
+                                                    span(class="glyphicon glyphicon-minus" aria-hidden="true")

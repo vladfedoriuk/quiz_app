@@ -1,0 +1,36 @@
+.centered{
+    margin: auto;
+    text-align: center;
+    width: 50%;
+    padding: auto;
+}
+
+textarea {
+    resize: none;
+}
+
+ul[class="nav navbar-nav"] button{
+    margin-left: 20px;
+}
+
+tr button{
+    margin-left: 10px;
+}
+
+.page-header h3{
+    margin-left: 40px;
+}
+
+.minor-text{
+    font-family: sans-serif;
+    font-size: 20px;
+    color: silver;
+    text-decoration: none;
+}
+
+.quiz-title{
+    font-family: sans-serif;
+    font-size: 20px;
+    color: gray;
+    text-decoration: none;
+}

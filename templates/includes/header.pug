@@ -1,0 +1,18 @@
+div(name="header")
+    nav(class="navbar navbar-default navbar-static-top")
+        div(class="container-sm")
+            div(class="navbar-header")
+                a(class="navbar-brand" href="/") Quizee
+        if data && data.fullname
+            ul(class="nav navbar-nav")
+                li(class="btn-nav")
+                    div
+                        form(method="post", action='/quiz/add')
+                            button(class="btn btn-success navbar-btn" type="submit") +
+        
+            ul(class="nav navbar-nav")
+                li(class="btn-nav")
+                    div
+                        form(method="post", action="/logout")
+                            button(class="btn btn-danger navbar-btn" type="submit") Log out
+

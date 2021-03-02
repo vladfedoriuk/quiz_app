@@ -1,0 +1,63 @@
+extends layout
+
+block content
+    include includes/header
+    h1(class="centered")
+        span="Edit a quiz"
+    br
+    div(class="centered")
+        form(method="put", id="quiz-edit" action="/quiz/"+quiz_id)
+            div(class="row")
+                div(class="form-group col-md-6  col-md-offset-3")
+                    input(type="text" class="form-control" name="title" value=quiz.title)
+
+            div(class="row")
+                div(class="form-group col")
+                    input(type="text" class="form-control" name="description" value=quiz.description)
+
+
+        if questions
+            each question in questions
+
+                form(method="put" id=question.id action="/question/"+question.id)
+                    div(class="row")
+                        div(class="form-group col-md-6 col-md-offset-3")
+                            label(for="question") Question
+                            textarea(class="form-control" name="question" rows="3")=question.question
+                    each val in [1, 2, 3, 4]
+                        div(class="row")
+                            div(class="form-group col-md-6 col-md-offset-3")
+                                input(
+                                    type="text" 
+                                    class="form-control" 
+                                    name="answer_"+val 
+                                    value=question["answer_"+val]
+                                )
+
+                    div(class="row")
+                        div(class="form-group col-md-6 col-md-offset-3")
+                            select(multiple class="form-control" id="correct_answer" name="correct_answer")
+                                each val in [1, 2, 3, 4]
+                                    if question.correct_answer==val
+                                        option(selected="selected")=val
+                                    else
+                                        option=val
+        
+                    div(class="row")
+                        div(class="form-group col-md-4 col-md-offset-4")
+                            label(for="points") points
+                            input(type="number" class="form-control" id="points" name="points" value=question.points)
+        else
+            div(class="centered")
+                h2(class="minor-text")
+                    span="No questions have been added yet"
+        
+        form(method="post" enctype="multipart/form-data" action='/question/add/'+quiz_id)
+            button(class="btn btn-success" type="submit")
+                span(class="glyphicon glyphicon-question-sign" aria-hidden="true")
+        
+        div(class="row" style="margin-top: 5%;")
+            div(class="form-group col-md-6 col-md-offset-3")           
+                a(href="/home") 
+                    button(class="btn btn-primary btn-lg" id="edit-confirm") Confirm
+

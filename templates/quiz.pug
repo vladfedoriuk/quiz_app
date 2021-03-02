@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    include includes/header
+    div(class="container centered")
+        .row
+            .col4
+                h1=quiz.title
+        .row
+            .col2
+                h4=quiz.description
+    
+    div(class="centered")
+        if questions
+                each question in questions
+                    form(method="post" id=question.id action="/question/"+question.id)
+                        div(class="row")
+                            div(class="form-group col-md-6 col-md-offset-3")
+                                label(for="question") Question
+                                textarea(class="form-control" name="question" rows="3" readonly)=question.question
+                        each val in [1, 2, 3, 4]
+                            if question["answer_"+val]
+                                div(class="row" style="width:100%;")
+                                    div(class="col-md-offset-2 col-xs-6 col-md-4")
+                                        input(
+                                            type="radio" 
+                                            name="answer"
+                                            value=val
+                                            id=''+question.id+'_'+val
+                                        )
+                                    div(class="col-xs-6 col-md-4")
+                                        label(
+                                            for=''+question.id+'_'+val
+                                        )=question["answer_"+val]
+                                br
+                                    
+                                    
+        else
+            div(class="centered")
+                h2(class="minor-text")
+                    span="No questions have been added yet"
+        
+        div(class="row" style="margin-top: 5%;")
+            div(class="form-group col-md-6 col-md-offset-3")           
+                button(class="btn btn-success btn-lg" id="pass-quiz") Submit

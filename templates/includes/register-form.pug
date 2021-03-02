@@ -1,0 +1,85 @@
+div(class="centered")
+    h1(class="display-3") Register
+
+    form(method="post", action="/register" id="register")
+        div(class="form-group row")
+            label(
+                for="reg-username"
+                class="col-sm-6 col-form-label"
+            ) Username
+            div(class="col-sm-6")
+                input(
+                    type="text" 
+                    name="reg_username"
+                    id="reg-username"
+                    class="form-control"
+                    placeholder="Username"
+                )
+                if reg_errors
+                    each error in reg_errors
+                        if error.param == 'reg_username'
+                            div(class="invalid-feedback" style="color: red;")
+                                p=error.msg
+                            - break
+        
+        div(class="form-group row")
+            label(
+                for="reg-password"
+                class="col-sm-6 col-form-label"
+            ) Full Name
+            div(class="col-sm-6")
+                input(
+                    type="text" 
+                    name="reg_fullname"
+                    id="reg-full-name"
+                    class="form-control"
+                    placeholder="Full Name"
+                )
+                if reg_errors
+                    each error in reg_errors
+                        if error.param == 'reg_fullname'
+                            div(class="invalid-feedback" style="color: red;")
+                                p=error.msg
+                            - break
+
+        div(class="form-group row")
+            label(
+                for="reg-password"
+                class="col-sm-6 col-form-label"
+            ) Password
+            div(class="col-sm-6")
+                input(
+                    type="password" 
+                    name="reg_password"
+                    id="reg-password"
+                    class="form-control"
+                    placeholder="Password"
+                )
+                if reg_errors
+                    each error in reg_errors
+                        if error.param == 'reg_password'
+                            div(class="invalid-feedback" style="color: red;")
+                                p=error.msg
+                            - break
+
+        div(class="form-group row")
+            label(
+                for="reg-conf-password"
+                class="col-sm-6 col-form-label"
+            ) Confirm Password
+            div(class="col-sm-6")
+                input(
+                    type="password" 
+                    name="conf-password"
+                    id="reg-conf-password"
+                    class="form-control"
+                    placeholder="Confirmed Password"
+                )
+                if reg_errors
+                    each error in reg_errors
+                        if error.param == 'conf-password'
+                            div(class="invalid-feedback" style="color: red;")
+                                p=error.msg
+                            - break
+        
+        input(type="submit" class="btn btn-primary mb-2" value="Register")
