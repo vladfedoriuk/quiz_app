@@ -5,7 +5,7 @@ const pool = mysql.createPool({
     user: 'vlad_f',
     host: 'localhost',
     port: 3306,
-    password: '20122000vl',
+    password: 'pass4dev',
     database: 'quizee'
 });
 
