@@ -1,2 +1,2 @@
 # quiz_app
-An application written in Node.js and Express to create and manage quizes
+An application written in Node.js and Express.js to create and manage quizes
